@@ -13,8 +13,7 @@ Next, I performed a similar iterative process for the two csv files. Once finish
 
 Once I had one clean dataset resulting from the combination of the original three, I imported the data into a PostgreSQL relational database and performed queries on it:
 
-<img width="510" alt="Screen Shot 2020-10-02 at 3 21 02 PM" src="https://user-images.githubusercontent.com/66881241/94974288-ecec2e80-04c2-11eb-932e-4e5bb0e74128.png">
-<img width="546" alt="Screen Shot 2020-10-02 at 3 20 53 PM" src="https://user-images.githubusercontent.com/66881241/94974290-ef4e8880-04c2-11eb-9ab7-aa3b37f2c606.png">
+<img width="510" alt="Screen Shot 2020-10-02 at 3 21 02 PM" src="https://user-images.githubusercontent.com/66881241/94974288-ecec2e80-04c2-11eb-932e-4e5bb0e74128.png"> <img width="546" alt="Screen Shot 2020-10-02 at 3 20 53 PM" src="https://user-images.githubusercontent.com/66881241/94974290-ef4e8880-04c2-11eb-9ab7-aa3b37f2c606.png">
 
 
 ## Result
