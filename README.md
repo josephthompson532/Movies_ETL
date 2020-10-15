@@ -1,4 +1,5 @@
 # Movies_ETL
+* NOTE: The finished product of this Repository is under "Klea
 
 ## Purpose
 The purpose of this repository was to demonstrate my ability to take exceptionally dirty data and clean data from multiple sources, transform the data, combine the sources into a single dataset, and then export the data to a relational database such as PostgreSQL.
