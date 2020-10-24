@@ -1,8 +1,8 @@
 # Movies_ETL
-* NOTE: The finished product of this repository is under "ETL_Clean_Kaggle_Data.ipynb"
+* NOTE: The finished product of this repository is under "ETL_create_database.ipynb"
 
 ## Purpose
-The purpose of this repository was to demonstrate my ability to take exceptionally dirty data and clean data from multiple sources, transform the data, combine the sources into a single dataset, and then export the data to a relational database such as PostgreSQL.
+The purpose of this repository was to demonstrate my ability to take exceptionally dirty data from multiple sources and clean the data, transform the data, combine the sources into a single dataset, and then export the data to a relational database, in this case, PostgreSQL.
 
 ### Overview
 I started with 3 different data sources: a Kaggle csv file, a json file, and a ratings csv file containing rating information for movies. The files were too large to upload to Github themselves, so I have not uploaded them here. The json files was in particularly unusable condition. It started out with 192 columns. Through the use of list-comprehensions and functions, I was able to cut the columns down to a reasonable number of only those columns with useful information. Then I got rid of rows with null values or values without an "imdb_rating" or with a "No. of Episodes" since we were only looking for movies. Any column that did not meet a certain threshold non-null values was also drop. It was an iterative process but eventually I was able to get the data down to a form that was clean and had only the columns we needed. I then streamlined this process but reformatting all of my code into a set of functions.
@@ -20,4 +20,4 @@ Once I had one clean dataset resulting from the combination of the original thre
 
 
 ## Result
-The result was a single-table, fully functional database in PostgreSQL that I could perform queries using SQL.
+The result was a single-table, fully functional database in PostgreSQL that I could perform queries on using SQL.
