@@ -13156,7 +13156,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1 Add the function that takes in three arguments;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Add the function that takes in three arguments;</span>
 <span class="c1"># Wikipedia data, Kaggle metadata, and MovieLens rating data (from Kaggle)</span>
 
 <span class="k">def</span> <span class="nf">extract_transform_load</span><span class="p">(</span><span class="n">Wikipedia_data</span><span class="p">,</span> <span class="n">Kaggle_metadata</span><span class="p">,</span> <span class="n">Ratings_data</span><span class="p">):</span>
@@ -13168,22 +13168,22 @@ div#notebook {
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Wikipedia_data</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">wiki_movies_raw</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
     
-    <span class="c1"># 3. Write a list comprehension to filter out TV shows.</span>
+    <span class="c1"># Write a list comprehension to filter out TV shows.</span>
     <span class="n">wiki_movies_raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie</span> <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">wiki_movies_raw</span>
                        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Director&#39;</span> <span class="ow">in</span> <span class="n">movie</span> <span class="ow">or</span> <span class="s1">&#39;Directed by&#39;</span> <span class="ow">in</span> <span class="n">movie</span><span class="p">)</span>
                        <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;imdb_link&#39;</span> <span class="ow">in</span> <span class="n">movie</span><span class="p">)</span>
                        <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;No. of episodes&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">movie</span><span class="p">)]</span>
 
-    <span class="c1"># 4. Write a list comprehension to iterate through the cleaned wiki movies list</span>
+    <span class="c1"># Write a list comprehension to iterate through the cleaned wiki movies list</span>
     <span class="c1"># and call the clean_movie function on each movie.</span>
     <span class="n">cleaned_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">clean_movie</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span> <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">wiki_movies_raw</span><span class="p">]</span>
     
 
-    <span class="c1"># 5. Read in the cleaned movies list from Step 4 as a DataFrame.</span>
+    <span class="c1"># Read in the cleaned movies list from Step 4 as a DataFrame.</span>
     <span class="n">cleaned_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">clean_movie</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span> <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">wiki_movies_raw</span><span class="p">]</span>
     <span class="n">wiki_movies_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cleaned_movies</span><span class="p">)</span>
 
-    <span class="c1"># 6. Write a try-except block to catch errors while extracting the IMDb ID using a regular expression string and</span>
+    <span class="c1"># Write a try-except block to catch errors while extracting the IMDb ID using a regular expression string and</span>
     <span class="c1">#  dropping any imdb_id duplicates. If there is an error, capture and print the exception.</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;imdb_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;imdb_link&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(tt\d</span><span class="si">{7}</span><span class="s1">)&#39;</span><span class="p">)</span>
@@ -13192,25 +13192,25 @@ div#notebook {
     <span class="k">except</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There is an error&#39;</span><span class="p">)</span>
 
-    <span class="c1">#  7. Write a list comprehension to keep the columns that don&#39;t have null values from the wiki_movies_df DataFrame.</span>
+    <span class="c1">#  Write a list comprehension to keep the columns that don&#39;t have null values from the wiki_movies_df DataFrame.</span>
     <span class="n">wiki_columns_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">wiki_movies_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">wiki_movies_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">]</span>
     <span class="n">wiki_movies_df</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="n">wiki_columns_to_keep</span><span class="p">]</span>
 
 
-    <span class="c1"># 8. Create a variable that will hold the non-null values from the “Box office” column.</span>
+    <span class="c1"># Create a variable that will hold the non-null values from the “Box office” column.</span>
     <span class="n">box_office</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;Box office&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 
     
-    <span class="c1"># 9. Convert the box office data created in Step 8 to string values using the lambda and join functions.</span>
+    <span class="c1"># Convert the box office data created in Step 8 to string values using the lambda and join functions.</span>
     <span class="n">box_office</span> <span class="o">=</span> <span class="n">box_office</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
     
 
-    <span class="c1"># 10. Write a regular expression to match the six elements of &quot;form_one&quot; of the box office data.</span>
+    <span class="c1"># Write a regular expression to match the six elements of &quot;form_one&quot; of the box office data.</span>
     <span class="n">form_one</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\$\s*\d+\.?\d*\s*[mb]illi?on&#39;</span>
-    <span class="c1"># 11. Write a regular expression to match the three elements of &quot;form_two&quot; of the box office data.</span>
+    <span class="c1"># Write a regular expression to match the three elements of &quot;form_two&quot; of the box office data.</span>
     <span class="n">form_two</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\$\s*\d{1,3}(?:[,\.]\d</span><span class="si">{3}</span><span class="s1">)+(?!\s[mb]illion)&#39;</span>
 
-    <span class="c1"># 12. Add the parse_dollars function.</span>
+    <span class="c1"># Add the parse_dollars function.</span>
     <span class="k">def</span> <span class="nf">parse_dollars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
         <span class="c1"># if s is not a string, return NaN</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
@@ -13257,18 +13257,18 @@ div#notebook {
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     
         
-    <span class="c1"># 13. Clean the box office column in the wiki_movies_df DataFrame.</span>
+    <span class="c1"># Clean the box office column in the wiki_movies_df DataFrame.</span>
     <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;box_office&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">box_office</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">form_one</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">form_two</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_dollars</span><span class="p">)</span>
     <span class="n">wiki_movies_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Box office&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="c1"># 14. Clean the budget column in the wiki_movies_df DataFrame.</span>
+    <span class="c1"># Clean the budget column in the wiki_movies_df DataFrame.</span>
     <span class="n">budget</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;Budget&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
     <span class="n">budget</span><span class="o">=</span> <span class="n">budget</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">budget</span> <span class="o">=</span> <span class="n">budget</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\$.*[-—–](?![a-z])&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;budget&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">budget</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">form_one</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">form_two</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_dollars</span><span class="p">)</span>
     <span class="n">wiki_movies_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Budget&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="c1"># 15. Clean the release date column in the wiki_movies_df DataFrame.</span>
+    <span class="c1"># Clean the release date column in the wiki_movies_df DataFrame.</span>
     <span class="n">release_date</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;Release date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">date_form_one</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?:January|February|March|April|May|June|July|August|September|October|November|December)\s[123]\d,\s\d</span><span class="si">{4}</span><span class="s1">&#39;</span>
     <span class="n">date_form_two</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">.[01]\d.[123]\d&#39;</span>
@@ -13278,7 +13278,7 @@ div#notebook {
     <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;release_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">release_date</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">date_form_one</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">date_form_two</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">date_form_three</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">date_form_four</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">infer_datetime_format</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     
-    <span class="c1"># 16. Clean the running time column in the wiki_movies_df DataFrame.</span>
+    <span class="c1"># Clean the running time column in the wiki_movies_df DataFrame.</span>
     <span class="n">running_time</span> <span class="o">=</span> <span class="n">wiki_movies_df</span><span class="p">[</span><span class="s1">&#39;Running time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">running_time_extract</span> <span class="o">=</span> <span class="n">running_time</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+)\s*ho?u?r?s?\s*(\d*)|(\d+)\s*m&#39;</span><span class="p">)</span>
     <span class="n">running_time_extract</span> <span class="o">=</span> <span class="n">running_time_extract</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -13290,7 +13290,7 @@ div#notebook {
 
     
      
-    <span class="c1"># 2. Clean the Kaggle metadata.</span>
+    <span class="c1"># Clean the Kaggle metadata.</span>
     <span class="n">kaggle_metadata</span> <span class="o">=</span> <span class="n">kaggle_metadata</span><span class="p">[</span><span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;adult&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;False&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
     <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;video&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;video&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
     <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -13299,17 +13299,17 @@ div#notebook {
     <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;popularity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;popularity&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
     <span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;release_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">kaggle_metadata</span><span class="p">[</span><span class="s1">&#39;release_date&#39;</span><span class="p">])</span>
 
-    <span class="c1"># 3. Merged the two DataFrames into the movies DataFrame.</span>
+    <span class="c1"># Merged the two DataFrames into the movies DataFrame.</span>
     <span class="n">movies_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">wiki_movies_df</span><span class="p">,</span> <span class="n">kaggle_metadata</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;imdb_id&#39;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;_wiki&#39;</span><span class="p">,</span><span class="s1">&#39;_kaggle&#39;</span><span class="p">])</span>
 
 
-    <span class="c1"># 4. Drop unnecessary columns from the merged DataFrame.</span>
+    <span class="c1"># Drop unnecessary columns from the merged DataFrame.</span>
     <span class="n">movies_df</span> <span class="o">=</span> <span class="n">movies_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">movies_df</span><span class="p">[(</span><span class="n">movies_df</span><span class="p">[</span><span class="s1">&#39;release_date_wiki&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;1996-01-01&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">movies_df</span><span class="p">[</span><span class="s1">&#39;release_date_kaggle&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s1">&#39;1965-01-01&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="n">movies_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title_wiki&#39;</span><span class="p">,</span><span class="s1">&#39;release_date_wiki&#39;</span><span class="p">,</span><span class="s1">&#39;Language&#39;</span><span class="p">,</span><span class="s1">&#39;Production company(s)&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
 
 
-    <span class="c1"># 5. Add in the function to fill in the missing Kaggle data.</span>
+    <span class="c1"># Add in the function to fill in the missing Kaggle data.</span>
     <span class="k">def</span> <span class="nf">fill_missing_kaggle_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">kaggle_column</span><span class="p">,</span> <span class="n">wiki_column</span><span class="p">):</span>
         <span class="n">df</span><span class="p">[</span><span class="n">kaggle_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">wiki_column</span><span class="p">]</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="n">kaggle_column</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">row</span><span class="p">[</span><span class="n">kaggle_column</span><span class="p">]</span>
@@ -13317,13 +13317,13 @@ div#notebook {
         <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">wiki_column</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-    <span class="c1"># 6. Call the function in Step 5 with the DataFrame and columns as the arguments.</span>
+    <span class="c1"># Call the function in Step 5 with the DataFrame and columns as the arguments.</span>
     <span class="n">fill_missing_kaggle_data</span><span class="p">(</span><span class="n">movies_df</span><span class="p">,</span> <span class="s1">&#39;runtime&#39;</span><span class="p">,</span> <span class="s1">&#39;running_time&#39;</span><span class="p">)</span>
     <span class="n">fill_missing_kaggle_data</span><span class="p">(</span><span class="n">movies_df</span><span class="p">,</span> <span class="s1">&#39;budget_kaggle&#39;</span><span class="p">,</span> <span class="s1">&#39;budget_wiki&#39;</span><span class="p">)</span>
     <span class="n">fill_missing_kaggle_data</span><span class="p">(</span><span class="n">movies_df</span><span class="p">,</span> <span class="s1">&#39;revenue&#39;</span><span class="p">,</span> <span class="s1">&#39;box_office&#39;</span><span class="p">)</span>
 
 
-    <span class="c1"># 7. Filter the movies DataFrame for specific columns.</span>
+    <span class="c1"># Filter the movies DataFrame for specific columns.</span>
     <span class="n">movies_df</span> <span class="o">=</span> <span class="n">movies_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;imdb_id&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;title_kaggle&#39;</span><span class="p">,</span><span class="s1">&#39;original_title&#39;</span><span class="p">,</span><span class="s1">&#39;tagline&#39;</span><span class="p">,</span><span class="s1">&#39;belongs_to_collection&#39;</span><span class="p">,</span><span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="s1">&#39;imdb_link&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;runtime&#39;</span><span class="p">,</span><span class="s1">&#39;budget_kaggle&#39;</span><span class="p">,</span><span class="s1">&#39;revenue&#39;</span><span class="p">,</span><span class="s1">&#39;release_date_kaggle&#39;</span><span class="p">,</span><span class="s1">&#39;popularity&#39;</span><span class="p">,</span><span class="s1">&#39;vote_average&#39;</span><span class="p">,</span><span class="s1">&#39;vote_count&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;genres&#39;</span><span class="p">,</span><span class="s1">&#39;original_language&#39;</span><span class="p">,</span><span class="s1">&#39;overview&#39;</span><span class="p">,</span><span class="s1">&#39;spoken_languages&#39;</span><span class="p">,</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span>
@@ -13332,7 +13332,7 @@ div#notebook {
                       <span class="p">]]</span>
 
 
-    <span class="c1"># 8. Rename the columns in the movies DataFrame.</span>
+    <span class="c1"># Rename the columns in the movies DataFrame.</span>
     <span class="n">movies_df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;kaggle_id&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;title_kaggle&#39;</span><span class="p">:</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;url&#39;</span><span class="p">:</span><span class="s1">&#39;wikipedia_url&#39;</span><span class="p">,</span>
@@ -13352,7 +13352,7 @@ div#notebook {
 
 
 
-    <span class="c1"># 9. Transform and merge the ratings DataFrame.</span>
+    <span class="c1"># Transform and merge the ratings DataFrame.</span>
     <span class="n">ratings</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
     <span class="n">rating_counts</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;movieId&#39;</span><span class="p">,</span><span class="s1">&#39;rating&#39;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> \
                 <span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;userId&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> \
@@ -13387,7 +13387,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 6 Create the path to your file directory and variables for the three files. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the path to your file directory and variables for the three files. </span>
 <span class="n">file_dir</span> <span class="o">=</span> <span class="s1">&#39;/Users/josephthompson/Documents/Homework/Movies-ETL/Resources&#39;</span>
 <span class="c1"># Wikipedia data</span>
 <span class="n">wiki_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">file_dir</span><span class="si">}</span><span class="s1">/wikipedia-movies.json&#39;</span>
@@ -13407,7 +13407,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 11. Set the three variables equal to the function created in D1.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the three variables equal to the function created in D1.</span>
 <span class="n">extract_transform_load</span><span class="p">(</span><span class="n">wiki_file</span><span class="p">,</span> <span class="n">kaggle_file</span><span class="p">,</span> <span class="n">ratings_file</span><span class="p">)</span>
 </pre></div>
 
@@ -13465,7 +13465,7 @@ importing rows 26000000 to 26024289...Done. 4764.048379898071 total seconds elap
 <div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 12. Set the DataFrames from the return statement equal to the file names in Step 11. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the DataFrames from the return statement equal to the file names in Step 11. </span>
 <span class="n">wiki_movies_df</span> <span class="o">=</span> <span class="n">wiki_file</span>
 <span class="n">movies_with_ratings_df</span> <span class="o">=</span> <span class="n">kaggle_file</span>
 <span class="n">movies_df</span> <span class="o">=</span> <span class="n">ratings_file</span>
